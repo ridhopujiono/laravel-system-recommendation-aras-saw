@@ -1,46 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Data Kriteria</h3>
-                <div class="card">
-                    <div class="card-body">
-                        <button id="btn-tambah" class="btn btn-primary mb-3">
-                            <i class="fa fa-plus"></i> Tambah Kriteria
-                        </button>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Kode</th>
-                                        <th>Keterangan</th>
-                                        <th>Bobot</th>
-                                        <th>Jenis</th>
-                                        <th width="15%">Aksi</th>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Data Kriteria</h3>
+            <div class="card">
+                <div class="card-body">
+                    <button id="btn-tambah" class="btn btn-primary mb-3">
+                        <i class="fa fa-plus"></i> Tambah Kriteria
+                    </button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Keterangan</th>
+                                    <th>Bobot</th>
+                                    <th>Jenis</th>
+                                    <th width="15%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($kriteria as $k)
+                                    <tr id="kriteria_{{ $k->id }}">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $k->kode_kriteria }}</td>
+                                        <td>{{ $k->keterangan }}</td>
+                                        <td>{{ $k->bobot }}</td>
+                                        <td>{{ ucfirst($k->jenis) }}</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info btn-edit" data-id="{{ $k->id }}">Edit</button>
+                                            <button class="btn btn-sm btn-danger btn-hapus"
+                                                data-id="{{ $k->id }}">Hapus</button>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($kriteria as $k)
-                                        <tr id="kriteria_{{ $k->id }}">
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $k->kode_kriteria }}</td>
-                                            <td>{{ $k->keterangan }}</td>
-                                            <td>{{ $k->bobot }}</td>
-                                            <td>{{ ucfirst($k->jenis) }}</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info btn-edit"
-                                                    data-id="{{ $k->id }}">Edit</button>
-                                                <button class="btn btn-sm btn-danger btn-hapus"
-                                                    data-id="{{ $k->id }}">Hapus</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
