@@ -2,63 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AlternatifController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $alternatif = Alternatif::orderBy('nama', 'asc')->get();
+        return view('alternatif.index', compact('alternatif'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $alternatif = Alternatif::create($request->all());
+        return response()->json(['success' => 'Data alternatif berhasil ditambahkan.', 'data' => $alternatif]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $alternatif = Alternatif::find($id);
+        if (!$alternatif) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+        return response()->json($alternatif);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $alternatif = Alternatif::find($id);
+        if (!$alternatif) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+        
+        $alternatif->update($request->all());
+        return response()->json(['success' => 'Data alternatif berhasil diperbarui.', 'data' => $alternatif]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $alternatif = Alternatif::find($id);
+        if (!$alternatif) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+        $alternatif->delete();
+        return response()->json(['success' => 'Data alternatif berhasil dihapus.']);
     }
 }
