@@ -50,7 +50,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="alternatifForm">
-                        <input type="hidden" name="alternatif_id" id="alternatif_id">
+                        <input type="hidden" name="id_alternatif" id="id_alternatif">
                         <input type="hidden" name="_method" id="form_method" value="POST">
 
                         <div class="form-group">
@@ -82,7 +82,7 @@
             $('#btn-tambah').click(function () {
                 $('#alternatifModalLabel').text('Tambah Alternatif');
                 $('#alternatifForm').trigger('reset');
-                $('#alternatif_id').val('');
+                $('#id_alternatif').val('');
                 $('#form_method').val('POST');
                 $('#alternatifModal').modal('show');
             });
@@ -92,7 +92,7 @@
                 let id = $(this).data('id');
                 $.get("{{ url('alternatif') }}/" + id + '/edit', function (data) {
                     $('#alternatifModalLabel').text('Edit Alternatif');
-                    $('#alternatif_id').val(data.id);
+                    $('#id_alternatif').val(data.id);
                     $('#nama').val(data.nama);
                     $('#form_method').val('PUT');
                     $('#alternatifModal').modal('show');
@@ -102,7 +102,7 @@
             // 3. Simpan data (Tambah atau Update)
             $('#btn-simpan').click(function (e) {
                 e.preventDefault();
-                let id = $('#alternatif_id').val();
+                let id = $('#id_alternatif').val();
                 let url = id ? "{{ url('alternatif') }}/" + id : "{{ route('alternatif.store') }}";
 
                 $.ajax({
