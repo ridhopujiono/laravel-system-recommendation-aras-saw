@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\PerhitunganController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\KriteriaController;
@@ -21,3 +23,11 @@ Route::post('alternatif', [AlternatifController::class, 'store'])->name('alterna
 Route::get('alternatif/{id}/edit', [AlternatifController::class, 'edit'])->name('alternatif.edit');
 Route::put('alternatif/{id}', [AlternatifController::class, 'update'])->name('alternatif.update');
 Route::delete('alternatif/{id}', [AlternatifController::class, 'destroy'])->name('alternatif.destroy');
+
+Route::get('penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+Route::post('penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
+
+
+Route::get('/perhitungan/saw', [PerhitunganController::class, 'saw'])->name('perhitungan.saw');
+Route::get('/perhitungan/aras', [PerhitunganController::class, 'aras'])->name('perhitungan.aras');
+Route::get('/hasil', [PerhitunganController::class, 'hasil'])->name('hasil.index');
