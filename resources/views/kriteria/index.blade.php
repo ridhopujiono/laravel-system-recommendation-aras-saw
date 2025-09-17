@@ -57,7 +57,7 @@
                 <div class="modal-body">
                     <form id="kriteriaForm">
                         {{-- Hidden input untuk ID dan method --}}
-                        <input type="hidden" name="kriteria_id" id="kriteria_id">
+                        <input type="hidden" name="id_kriteria" id="id_kriteria">
                         <input type="hidden" name="_method" id="form_method" value="POST">
 
                         <div class="form-group">
@@ -104,7 +104,7 @@
             $('#btn-tambah').click(function () {
                 $('#kriteriaModalLabel').text('Tambah Kriteria');
                 $('#kriteriaForm').trigger('reset');
-                $('#kriteria_id').val('');
+                $('#id_kriteria').val('');
                 $('#form_method').val('POST');
                 $('#kriteriaModal').modal('show');
             });
@@ -114,7 +114,7 @@
                 let id = $(this).data('id');
                 $.get("{{ url('kriteria') }}/" + id + '/edit', function (data) {
                     $('#kriteriaModalLabel').text('Edit Kriteria');
-                    $('#kriteria_id').val(data.id);
+                    $('#id_kriteria').val(data.id);
                     $('#kode_kriteria').val(data.kode_kriteria);
                     $('#keterangan').val(data.keterangan);
                     $('#bobot').val(data.bobot);
@@ -127,7 +127,7 @@
             // 3. Simpan data (Tambah atau Update)
             $('#btn-simpan').click(function (e) {
                 e.preventDefault();
-                let id = $('#kriteria_id').val();
+                let id = $('#id_kriteria').val();
                 let url = id ? "{{ url('kriteria') }}/" + id : "{{ route('kriteria.store') }}";
                 let method = $('#form_method').val();
 
