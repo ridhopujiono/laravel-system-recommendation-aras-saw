@@ -63,7 +63,7 @@
                                         <tr>
                                             <td class="text-left">{{ $alt->nama }}</td>
                                             @foreach($kriteria as $k)
-                                                <td>{{ number_format($matriks_r[$alt->id][$k->id], 4) }}</td>
+                                                <td>{{ number_format($matriks_r[$alt->id][$k->id], 8) }}</td>
                                             @endforeach
                                         </tr>
                                     @endforeach
@@ -117,7 +117,7 @@
                                         <tr>
                                             <td class="text-left">{{ $alt->nama }}</td>
                                             @foreach($kriteria as $k)
-                                                <td>{{ number_format($matriks_terbobot[$alt->id][$k->id], 4) }}</td>
+                                                <td>{{ number_format($matriks_terbobot[$alt->id][$k->id], 8) }}</td>
                                             @endforeach
                                         </tr>
                                     @endforeach
@@ -147,7 +147,7 @@
                                         <tr>
                                             <td class="text-center"><strong>{{ $rank++ }}</strong></td>
                                             <td>{{ $alternatif->find($id_alternatif)->nama }}</td>
-                                            <td class="text-center">{{ number_format($nilai, 4) }}</td>
+                                            <td class="text-center">{{ number_format($nilai, 8) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

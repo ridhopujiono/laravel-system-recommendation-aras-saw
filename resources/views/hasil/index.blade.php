@@ -122,11 +122,11 @@
                                 <br>
                                 ρ = 1 - ({{ 6 * $total_d2 }}) / ({{ $n * (pow($n, 2) - 1) }})
                                 <br>
-                                ρ = {{ number_format($rho, 4) }}
+                                ρ = {{ number_format($rho, 8) }}
                             </p>
                             <div class="alert alert-info">
                                 <b>Kesimpulan:</b> Nilai korelasi antara metode SAW dan ARAS adalah
-                                <b>{{ number_format($rho, 4) }}</b>,
+                                <b>{{ number_format($rho, 8) }}</b>,
                                 yang menunjukkan tingkat <b>{{ $interpretasi }}</b>.
                             </div>
                         </div>
